@@ -1,0 +1,7 @@
+webdriver_manager
+ffmpeg-python
+selenium
+screeninfo
+Google
+oauth2client
+uritemplate
