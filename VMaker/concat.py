@@ -58,7 +58,7 @@ def main(src=[]):
                 res.get('filter_name'), size=res.get("size"))
         force_mkdir(settings.result_path)
         output = ffmpeg.output(
-            v_o, a_o, settings.result_full, b=src[0].get_highest_bit_rate())
+            v_o, a_o, settings.result_full, b=src[0].get_highest_bit_rate(), vcodec='libx264', crf=0)
         output.run()
         cmd_logging(get_args(output.get_args()))
 
