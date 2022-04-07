@@ -9,11 +9,7 @@ import os
 
 sys.path.append(str(p(__file__).parent.parent))
 if True:
-    from VMaker.commands import run_cmd, run_direct, run_with_log
-    from VMaker.File import File
-    from VMaker.rm import force_cp, force_rm
-    from VMaker.Settings import Options, Settings
-    from VMaker import concat
+    from VMaker.Settings import Settings
 sep = "\\" if platform.system() == "Windows" else "/"
 
 settings = Settings.get_setting_file_name(os.getcwd())
@@ -126,6 +122,7 @@ def range_give_zero(duration: str, command: list):
         end = command[-1].split("~")
         if end[0] == "":
             command[-1] = f"{float(duration)-float(end[1])}~{duration}"
+    print(command)
     return command
 
 
@@ -336,7 +333,7 @@ def arm_sort_key(target):
     return float(target[1].split("~")[0])
 
 
-def merge(a, b):
+def merge(a, b, multi_source=True, output=False):
     joined = ffmpeg.concat(*list_zipper(a, b), v=1,
                            a=1).node
     a, b = [], []
@@ -346,7 +343,7 @@ def merge(a, b):
 def get_args(args):
     res = "ffmpeg -y "+" ".join(args)
     res = [i for i in res if i != '\\']
-    print("".join(res))
+    return "".join(res)
 
 
 def range_to_float(t: str):
@@ -354,3 +351,8 @@ def range_to_float(t: str):
     # a = f"{float(a):.2f}"
     # b = f"{float(a):.2f}"
     return float(a), float(b)
+
+
+"""
+ffmpeg -y -i 01.mp4 -filter_complex
+"""

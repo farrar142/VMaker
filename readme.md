@@ -14,7 +14,6 @@
 {
   "filesPath": "./origin",
   "resultPath": "./result",
-  "outro": "",
   "files": {
     "01.mp4": {
       "remove": ["~3", "10~15", "~5"],

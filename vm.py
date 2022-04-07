@@ -1,6 +1,4 @@
 import sys
-from VMaker import upload_video
-import apiclient
 from VMaker import main
 
 

@@ -8,7 +8,6 @@ test.mp4
 *.mp4
 __pycache__
 .code
-*.exe
 *.jpeg
 *.jpeg
 *.log
