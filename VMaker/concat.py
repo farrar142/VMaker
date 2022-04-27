@@ -1,8 +1,8 @@
 import ffmpeg
 import sys
 
-# from . import upload_playlist
-# from . import upload_video
+from . import upload_playlist
+from . import upload_video
 from .Settings import *
 from .commands import *
 from .rm import *
@@ -62,18 +62,18 @@ def main(src=[]):
         output.run()
         cmd_logging(get_args(output.get_args()))
 
-    # if settings.youtube:
-    #     print(settings.youtube)
-    #     _s = settings.youtube
-    #     title = _s.get("title") or "Video"
-    #     description = _s.get("description") or ""
-    #     keywords = _s.get("keywords") or ""
-    #     category = _s.get("category") or ""
-    #     privacyStatus = _s.get("privacyStatus") or "private"
-    #     youtube_cmd = f'python upload_video.py --file="{settings.result_full}"  --title="{title}" --description="{description}"  --keywords="{keywords}" --category="{category}" --privacyStatus="{privacyStatus}"'
-    #     cmd_logging(youtube_cmd)
-    #     video_id = upload_video.main(settings.result_full, title,
-    #                                  description, category, keywords, privacyStatus)
-    #     if video_id and settings.playlist.get("playlist"):
-    #         pl_id = settings.playlist.get("playlist")
-    #         upload_playlist.main(pl_id, video_id)
+    if settings.youtube:
+        print(settings.youtube)
+        _s = settings.youtube
+        title = _s.get("title") or "Video"
+        description = _s.get("description") or ""
+        keywords = _s.get("keywords") or ""
+        category = _s.get("category") or ""
+        privacyStatus = _s.get("privacyStatus") or "private"
+        youtube_cmd = f'python upload_video.py --file="{settings.result_full}"  --title="{title}" --description="{description}"  --keywords="{keywords}" --category="{category}" --privacyStatus="{privacyStatus}"'
+        cmd_logging(youtube_cmd)
+        video_id = upload_video.main(settings.result_full, title,
+                                     description, category, keywords, privacyStatus)
+        if video_id and settings.playlist.get("playlist"):
+            pl_id = settings.playlist.get("playlist")
+            upload_playlist.main(pl_id, video_id)
